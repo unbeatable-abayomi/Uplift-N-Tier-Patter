@@ -38,3 +38,37 @@ function loadDataTable() {
         "width": "100%"
     });
 }
+
+
+function Delete(url) {
+    swal({
+        title: "Are You Sure You want to Delete?",
+        text: "You will not be able to restore the content!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Yes, delete it!",
+        closeOnconfirm: true
+
+    }, function () {
+        $.ajax({
+            type: 'DELETE',
+            url: url,
+            success: function (data) {
+                if (data.success) {
+                   
+                    toastr.success(data.message);
+                    dataTable.ajax.reload();
+                } else {
+                    toastr.error(data.message);
+                }
+            }
+        });
+    });
+
+   
+}
+
+function ShowMessage(msg) {
+   
+}
